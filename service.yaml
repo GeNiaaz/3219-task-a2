@@ -1,20 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cs3219-deployment
+  name: hello-world
 spec:
   selector:
     matchLabels:
-      app: cs3219
-  replicas: 2 # tells deployment to run 2 pods matching the template
+      run: load-balancer-example
+  replicas: 2
   template:
     metadata:
       labels:
-        app: cs3219
+        run: load-balancer-example
     spec:
       containers:
-        - name: cs3219
-          image: cs3219-nginx-image
-          imagePullPolicy: Never
+        - name: hello-world
+          image: gcr.io/google-samples/node-hello:1.0
           ports:
-            - containerPort: 80
+            - containerPort: 8080
+              protocol: TCP
+S
